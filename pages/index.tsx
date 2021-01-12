@@ -1,7 +1,18 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import { useForm } from "react-hook-form";
+
+interface IFormInput {
+  latitude: number;
+  longitude: number;
+  n: number;
+}
+
 export default function Home() {
+  const { register, errors, handleSubmit } = useForm<IFormInput>();
+  const onSubmit = (data: IFormInput) => console.log(data); 
+
   return (
     <div className={styles.container}>
       <Head>
@@ -10,13 +21,17 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h2 className={styles.title}>
+          Find nearby <a href="https://nextjs.org">Starlink</a> satellites
+        </h2>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input name="latitude" placeholder="latitude" ref={register({ min: -90, max: 90 })} />
+            <input name="longitude" placeholder="longitude" ref={register({ min: -180, max: 180 })} />
+            <input name="n" type="number" placeholder="num nearest" ref={register({ min: 1, max: 891 })} />
+            <button>Submit Query</button>
+          </form>
         </p>
 
         <div className={styles.grid}>
