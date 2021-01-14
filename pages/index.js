@@ -32,7 +32,7 @@ export default function Home() {
       <h2 className={styles.title}>
         Find nearby <a href="https://nextjs.org">Starlink</a> satellites✨
       </h2>
-      {/*{form()}*/}
+      {form()}
       <Globe globeInput={globeInput}/>
     </>
   )

@@ -36,34 +36,19 @@ export default class Globe extends React.Component {
   }
 
   getSats() {
-    fetch("http://0.0.0.0:8000/get_all_sats")
+    fetch(process.env.NEXT_PUBLIC_PATH_TO_API + "/get_all_sats")
       .then(response => response.json())
       .then(response => this.setMarkers(response.sats))
   }
-/*
-{
-  id: 'marker1',
-  city: 'Singapore',
-  color: 'red',
-  coordinates: [1.3521, 103.8198],
-  value: 50,
-},
-{
-  id: 'marker2',
-  city: 'New York',
-  color: 'blue',
-  coordinates: [40.73061, -73.935242],
-  value: 25,
-},
-*/
+
   setMarkers(sats) {
     let markers = [];
     Object.keys(sats).forEach(item => {
       markers.push({
         id: item,
         coordinates: sats[item],
-        value: 20,
-        color: "blue"
+        value: 15,
+        color: "#50E3C2"
       })
     });
     this.setState({markers: markers})
@@ -71,12 +56,12 @@ export default class Globe extends React.Component {
 
   render() {
     //console.log(this.state.markers)
-    let content;
-    if (this.state.loading === true || this.state.markers.length < 5) {
-      content = <RingLoader color="#50E3C2" loading={true} size={200} />
-    } else {
-      content = <ReactGlobe height="80vh" width="100vw" markers={this.state.markers} options={options}/>
-    }
+    let content = ( 
+      <>
+        <RingLoader color="#50E3C2" loading={this.state.loading} size={200} />
+        <ReactGlobe height="80vh" width="80vw" markers={this.state.markers} options={options} onGlobeBackgroundTextureLoaded={() => {this.setState({loading: false})}}/>
+      </>
+    )
 
     return (
       <div className={styles.content}>
