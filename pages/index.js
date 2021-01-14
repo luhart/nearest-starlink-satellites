@@ -30,7 +30,7 @@ export default function Home() {
   let mainContent = (
     <>
       <h2 className={styles.title}>
-        Find nearby <a href="https://nextjs.org">Starlink</a> satellites✨
+        Find nearby <a href="https://www.starlink.com/">Starlink</a> satellites✨
       </h2>
       {form()}
       <Globe globeInput={globeInput}/>
