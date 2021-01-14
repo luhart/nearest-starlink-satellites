@@ -9,7 +9,7 @@ app = Sanic("get nearest n starlink sats")
 
 @app.route("/")
 @app.route("/<path:path>")
-async def compute_nearest(request):
+async def compute_nearest(request, path=""):
     """computes a list of the nearest n satelites"""
     n = int(request.args["n"][0])
     latitude = int(request.args["latitude"][0])

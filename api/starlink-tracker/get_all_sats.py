@@ -9,7 +9,7 @@ app = Sanic("get all starlink sats")
 
 @app.route("/")
 @app.route("/<path:path>")
-async def get_all_sats(request):
+async def get_all_sats(request, path=""):
     sats = get_starlink_positions()
     return json({"sats": sats})
 
