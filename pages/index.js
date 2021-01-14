@@ -4,11 +4,9 @@ import { useForm } from 'react-hook-form';
 import styles from '../styles/Home.module.css';
 import Globe from '../components/globe';
 
-
 export default function Home() {
   const { register, handleSubmit } = useForm();
   const [globeInput, setGlobeInput] = useState(null);
-
 
   const onSubmit = (data) => {
     setGlobeInput([data.latitude, data.longitude, data.n]);

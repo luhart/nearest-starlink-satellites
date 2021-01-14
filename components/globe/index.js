@@ -25,7 +25,6 @@ export default class Globe extends React.Component {
       nearest_sats: {},
       markers: []
     }
-
     this.getSats = this.getSats.bind(this);
     this.setMarkers = this.setMarkers.bind(this);
   }
@@ -55,7 +54,6 @@ export default class Globe extends React.Component {
   }
 
   render() {
-    //console.log(this.state.markers)
     let content = ( 
       <>
         <RingLoader color="#50E3C2" loading={this.state.loading} size={200} />
