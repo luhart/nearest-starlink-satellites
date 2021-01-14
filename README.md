@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nearest SpaceX Starlink Satellite Finder
 
-## Getting Started
+Two things live in this repo:
 
-First, run the development server:
+1. An API for retrieving information about the whereabouts of different Starlink satellites.
+2. A web application that visualizes the positions of these satelites.
 
-```bash
-npm run dev
-# or
-yarn dev
+## API
+
+The API runs as two serverless functions on Vercel's edge network. It uses the [SpaceX-API](https://github.com/r-spacex/SpaceX-API) for getting the satellite data.
+
+### Usage:
+
+/get_nearest_sats: Get the n-nearest satellites of a given lat/long coordinate.
+```http
+GET https://nearby-starlink-sats.vercel.app/api/starlink-tracker/get_nearest_sats?latitude=40&longitude=50&n=5
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+/get_all_sats: Get all satellites with a non-null lat/long coordinate.
+```http
+GET https://nearby-starlink-sats.vercel.app/api/starlink-tracker/get_all_sats
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Visualization
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The visualization is running [here](https://nearby-starlink-sats.vercel.app/) on Vercel. It's a pretty simple React + NextJS app that makes use of [react-globe](https://github.com/chrisrzhou/react-globe). It would be fun to try making my own globe visualization with WebGL - we'll see if I find the time for that.
