@@ -18,7 +18,7 @@ async def compute_nearest(request, path=""):
     sats = get_starlink_positions()
     sat_distances = []
     for sat_id, val in sats.items():
-        sat_distances.append((sat_id, latitude, longitude, haversine(user_input, val)))
+        sat_distances.append((sat_id, val[0], val[1], haversine(user_input, val)))
     sat_distances.sort(key=lambda tup: tup[3])
     resp = {
         sat[0] : {"lat": sat[1], "long": sat[2], "distance (km)": sat[3]}
